@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "user.v1",
+  "type": "object",
+  "required": ["id", "email", "fullName", "role"],
+  "properties": {
+    "id":       { "type": "string", "minLength": 1 },
+    "email":    { "type": "string", "format": "email" },
+    "fullName": { "type": "string", "minLength": 1 },
+    "role":     { "type": "string", "enum": ["admin", "editor", "viewer"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "phone":    { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

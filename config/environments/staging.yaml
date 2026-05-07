@@ -1,0 +1,39 @@
+# config/environments/staging.yaml
+environment: staging
+ui:
+  base_url: "https://staging.app.example.com"
+  default_timeout_ms: 30000
+  navigation_timeout_ms: 45000
+  viewport: { width: 1920, height: 1080 }
+  locale: "en-US"
+  timezone: "UTC"
+  record_video: true
+  trace: "retain-on-failure"
+  screenshot_on_failure: true
+  slow_mo_ms: 0
+api:
+  rest:    { base_url: "https://staging.api.example.com/v1", timeout_seconds: 30 }
+  graphql: { endpoint: "https://staging.api.example.com/graphql" }
+  grpc:    { host: "staging.grpc.example.com", port: 50051, use_tls: true }
+  websocket: { url: "wss://staging.api.example.com/ws" }
+  async_api: { kafka_brokers: ["kafka-stg:9092"] }
+auth:
+  oauth:
+    token_url: "https://staging.auth.example.com/oauth/token"
+    client_id_env: "OAUTH_CLIENT_ID"
+    client_secret_env: "OAUTH_CLIENT_SECRET"
+    scope: "read write"
+  password_otp:
+    login_url: "https://staging.api.example.com/v1/auth/login"
+    otp_url:   "https://staging.api.example.com/v1/auth/otp"
+databases:
+  postgres: { host: "stg-pg.example.com",    port: 5432, db: "appdb", user_env: "PG_USER",    password_env: "PG_PASSWORD" }
+  mysql:    { host: "stg-mysql.example.com", port: 3306, db: "appdb", user_env: "MYSQL_USER", password_env: "MYSQL_PASSWORD" }
+  mongo:    { uri_env: "MONGO_URI", db: "appdb" }
+  dynamo:   { region: "us-east-1", endpoint: null }
+ai:
+  llm_provider: "openai"
+  llm_model: "gpt-4o-mini"
+  api_key_env: "OPENAI_API_KEY"
+  rag_corpus_path: "test_data/static/rag_corpus.json"
+  thresholds: { answer_relevancy: 0.78, faithfulness: 0.82, context_precision: 0.75 }

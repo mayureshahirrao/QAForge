@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "users.list.v1",
+  "type": "object",
+  "required": ["items", "total", "page", "limit"],
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": { "$ref": "user.v1" }
+    },
+    "total": { "type": "integer", "minimum": 0 },
+    "page":  { "type": "integer", "minimum": 1 },
+    "limit": { "type": "integer", "minimum": 1 }
+  }
+}

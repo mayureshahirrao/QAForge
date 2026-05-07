@@ -1,0 +1,49 @@
+# ===== Core BDD =====
+behave==1.2.6
+behavex==4.2.1                 # parallel execution wrapper for Behave
+
+# ===== UI =====
+playwright==1.48.0
+pytest-playwright==0.5.2       # only used for browser binaries helpers; behave drives tests
+
+# ===== API =====
+requests==2.33.1
+httpx==0.27.2
+gql[all]==3.5.0                # GraphQL client
+grpcio==1.80.0                 # upgraded from 1.63.0; no py3.13 wheels exist for 1.63.x
+grpcio-tools==1.71.2           # upgraded from 1.63.0; no py3.13 wheels exist for 1.63.x
+protobuf==5.28.2
+websockets==11.0.3
+aiokafka==0.14.0               # upgraded from 0.11.0; no py3.13 wheels exist for 0.11.x
+jsonschema==4.23.0             # contract validation
+pydantic==2.13.4               # upgraded from 2.9.2; required by deepeval 3.9.9
+
+# ===== Database =====
+psycopg[binary]==3.2.3         # PostgreSQL
+PyMySQL==1.1.1                 # MySQL
+pymongo==4.10.1                # MongoDB
+boto3==1.35.36                 # DynamoDB
+sqlalchemy==2.0.35
+
+# ===== AI Testing =====
+deepeval==3.9.9                # upgraded from 1.4.9; 1.4.9 pins grpcio~=1.63.0 which has no py3.13 wheels
+ragas==0.2.3
+datasets==3.0.1
+
+# ===== Test Data =====
+faker==30.3.0
+pyyaml==6.0.3
+python-dotenv==1.2.2
+
+# ===== Logging =====
+loguru==0.7.2
+structlog==24.4.0
+
+# ===== Reporting =====
+allure-behave==2.13.5
+jinja2==3.1.6                  # custom HTML dashboard
+
+# ===== Utilities =====
+tenacity==9.1.4                # retry helper; upgraded from 8.4.1 by deepeval
+rich==14.3.4                   # upgraded from 13.9.2 by deepeval
+cryptography==43.0.1

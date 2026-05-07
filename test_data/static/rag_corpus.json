@@ -1,0 +1,9 @@
+{
+  "documents": [
+    "QAForge uses Behave for BDD orchestration.",
+    "Playwright drives all UI scenarios.",
+    "Supported API protocols include REST, GraphQL, gRPC, WebSocket, and async (Kafka).",
+    "Database support spans PostgreSQL, MySQL, MongoDB, and DynamoDB.",
+    "AI tests use DeepEval for LLM metrics and RAGAs for RAG pipelines."
+  ]
+}

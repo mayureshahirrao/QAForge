@@ -1,0 +1,1 @@
+"""DynamoDB testing — isolated subpackage."""

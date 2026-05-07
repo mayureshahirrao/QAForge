@@ -1,0 +1,1 @@
+"""MySQL testing — isolated subpackage."""

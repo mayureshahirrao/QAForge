@@ -1,0 +1,4 @@
+email,role,country
+csv.user1@example.com,viewer,US
+csv.user2@example.com,editor,IN
+csv.user3@example.com,admin,DE

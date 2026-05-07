@@ -1,0 +1,12 @@
+{
+  "suites": {
+    "smoke":      { "tags": ["@smoke"],       "parallel_workers": 4 },
+    "regression": { "tags": ["@regression"],  "parallel_workers": 8 },
+    "ui":         { "tags": ["@ui"],          "parallel_workers": 4 },
+    "api":        { "tags": ["@api"],         "parallel_workers": 6 },
+    "db":         { "tags": ["@db"],          "parallel_workers": 2 },
+    "ai":         { "tags": ["@ai"],          "parallel_workers": 2 }
+  },
+  "browsers": ["chromium", "firefox", "webkit"],
+  "default_retry": 1
+}

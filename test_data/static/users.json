@@ -1,0 +1,16 @@
+{
+  "alice": {
+    "key": "alice",
+    "email": "alice@example.com",
+    "password": "Sup3r$ecret!",
+    "otp": "000000",
+    "role": "admin"
+  },
+  "bob": {
+    "key": "bob",
+    "email": "bob@example.com",
+    "password": "Sup3r$ecret!",
+    "otp": "000000",
+    "role": "viewer"
+  }
+}

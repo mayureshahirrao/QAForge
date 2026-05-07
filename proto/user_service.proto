@@ -1,0 +1,26 @@
+// proto/user_service.proto
+// Sample proto used by the gRPC sample tests.
+// Generate stubs with:
+//   python -m grpc_tools.protoc -I proto --python_out=src/qaforge/api/grpc/generated \
+//       --grpc_python_out=src/qaforge/api/grpc/generated proto/user_service.proto
+syntax = "proto3";
+
+package qaforge.user.v1;
+
+service UserService {
+  rpc GetUser     (GetUserRequest)     returns (User);
+  rpc ListUsers   (ListUsersRequest)   returns (stream User);                 // server streaming
+  rpc CreateUsers (stream User)        returns (CreateUsersResponse);         // client streaming
+  rpc Chat        (stream ChatMessage) returns (stream ChatMessage);          // bidi
+}
+
+message GetUserRequest { string id = 1; }
+message ListUsersRequest { int32 page = 1; int32 limit = 2; }
+message User {
+  string id = 1;
+  string email = 2;
+  string full_name = 3;
+  string role = 4;
+}
+message CreateUsersResponse { int32 created = 1; }
+message ChatMessage { string from = 1; string text = 2; int64 ts = 3; }
