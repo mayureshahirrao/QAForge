@@ -91,3 +91,6 @@ class PostgresClient:
         if self._conn:
             self._conn.close()
             self._conn = None
+
+if __name__ == "__main__":
+    connect()

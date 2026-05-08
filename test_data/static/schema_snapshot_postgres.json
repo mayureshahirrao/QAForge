@@ -1,0 +1,868 @@
+{
+  "actor": [
+    {
+      "column": "actor_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "first_name",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_name",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "actor_info": [
+    {
+      "column": "actor_id",
+      "type": "integer",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "first_name",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "last_name",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "film_info",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    }
+  ],
+  "address": [
+    {
+      "column": "address_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "address",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "address2",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "district",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "city_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "city",
+        "column": "city_id"
+      }
+    },
+    {
+      "column": "postal_code",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "phone",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "category": [
+    {
+      "column": "category_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "name",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "city": [
+    {
+      "column": "city_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "city",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "country_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "country",
+        "column": "country_id"
+      }
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "country": [
+    {
+      "column": "country_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "country",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "customer": [
+    {
+      "column": "customer_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "store_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "first_name",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_name",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "email",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "address_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "address",
+        "column": "address_id"
+      }
+    },
+    {
+      "column": "activebool",
+      "type": "boolean",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "create_date",
+      "type": "date",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "active",
+      "type": "integer",
+      "nullable": true,
+      "fk": null
+    }
+  ],
+  "customer_list": [
+    {
+      "column": "id",
+      "type": "integer",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "name",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "address",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "zip code",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "phone",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "city",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "country",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "notes",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "sid",
+      "type": "smallint",
+      "nullable": true,
+      "fk": null
+    }
+  ],
+  "film": [
+    {
+      "column": "film_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "title",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "description",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "release_year",
+      "type": "integer",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "language_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "language",
+        "column": "language_id"
+      }
+    },
+    {
+      "column": "rental_duration",
+      "type": "smallint",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "rental_rate",
+      "type": "numeric",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "length",
+      "type": "smallint",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "replacement_cost",
+      "type": "numeric",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "rating",
+      "type": "USER-DEFINED",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "special_features",
+      "type": "ARRAY",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "fulltext",
+      "type": "tsvector",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "film_actor": [
+    {
+      "column": "actor_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "actor",
+        "column": "actor_id"
+      }
+    },
+    {
+      "column": "film_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "film",
+        "column": "film_id"
+      }
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "film_category": [
+    {
+      "column": "film_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "film",
+        "column": "film_id"
+      }
+    },
+    {
+      "column": "category_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "category",
+        "column": "category_id"
+      }
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "film_list": [
+    {
+      "column": "fid",
+      "type": "integer",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "title",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "description",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "category",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "price",
+      "type": "numeric",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "length",
+      "type": "smallint",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "rating",
+      "type": "USER-DEFINED",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "actors",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    }
+  ],
+  "inventory": [
+    {
+      "column": "inventory_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "film_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "film",
+        "column": "film_id"
+      }
+    },
+    {
+      "column": "store_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "language": [
+    {
+      "column": "language_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "name",
+      "type": "character",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "nicer_but_slower_film_list": [
+    {
+      "column": "fid",
+      "type": "integer",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "title",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "description",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "category",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "price",
+      "type": "numeric",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "length",
+      "type": "smallint",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "rating",
+      "type": "USER-DEFINED",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "actors",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    }
+  ],
+  "payment": [
+    {
+      "column": "payment_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "customer_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "customer",
+        "column": "customer_id"
+      }
+    },
+    {
+      "column": "staff_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "staff",
+        "column": "staff_id"
+      }
+    },
+    {
+      "column": "rental_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": {
+        "table": "rental",
+        "column": "rental_id"
+      }
+    },
+    {
+      "column": "amount",
+      "type": "numeric",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "payment_date",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "rental": [
+    {
+      "column": "rental_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "rental_date",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "inventory_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": {
+        "table": "inventory",
+        "column": "inventory_id"
+      }
+    },
+    {
+      "column": "customer_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "customer",
+        "column": "customer_id"
+      }
+    },
+    {
+      "column": "return_date",
+      "type": "timestamp without time zone",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "staff_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "staff",
+        "column": "staff_id"
+      }
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "sales_by_film_category": [
+    {
+      "column": "category",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "total_sales",
+      "type": "numeric",
+      "nullable": true,
+      "fk": null
+    }
+  ],
+  "sales_by_store": [
+    {
+      "column": "store",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "manager",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "total_sales",
+      "type": "numeric",
+      "nullable": true,
+      "fk": null
+    }
+  ],
+  "staff": [
+    {
+      "column": "staff_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "first_name",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "last_name",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "address_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "address",
+        "column": "address_id"
+      }
+    },
+    {
+      "column": "email",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "store_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "active",
+      "type": "boolean",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "username",
+      "type": "character varying",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "password",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "picture",
+      "type": "bytea",
+      "nullable": true,
+      "fk": null
+    }
+  ],
+  "staff_list": [
+    {
+      "column": "id",
+      "type": "integer",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "name",
+      "type": "text",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "address",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "zip code",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "phone",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "city",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "country",
+      "type": "character varying",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "sid",
+      "type": "smallint",
+      "nullable": true,
+      "fk": null
+    }
+  ],
+  "store": [
+    {
+      "column": "store_id",
+      "type": "integer",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "manager_staff_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "staff",
+        "column": "staff_id"
+      }
+    },
+    {
+      "column": "address_id",
+      "type": "smallint",
+      "nullable": false,
+      "fk": {
+        "table": "address",
+        "column": "address_id"
+      }
+    },
+    {
+      "column": "last_update",
+      "type": "timestamp without time zone",
+      "nullable": false,
+      "fk": null
+    }
+  ]
+}

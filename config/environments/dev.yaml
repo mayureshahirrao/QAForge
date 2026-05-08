@@ -42,15 +42,15 @@ auth:
 
 databases:
   postgres:
-    host: "dev-pg.example.com"
+    host: "localhost"
     port: 5432
-    db:   "appdb"
+    db:   "PG_DB"
     user_env: "PG_USER"
     password_env: "PG_PASSWORD"
   mysql:
-    host: "dev-mysql.example.com"
+    host: "localhost"
     port: 3306
-    db:   "appdb"
+    db:   "MYSQL_DB"
     user_env: "MYSQL_USER"
     password_env: "MYSQL_PASSWORD"
   mongo:

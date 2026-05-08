@@ -19,7 +19,7 @@ jsonschema==4.23.0             # contract validation
 pydantic==2.13.4               # upgraded from 2.9.2; required by deepeval 3.9.9
 
 # ===== Database =====
-psycopg[binary]==3.2.3         # PostgreSQL
+psycopg2-binary==2.9.12         # PostgreSQL
 PyMySQL==1.1.1                 # MySQL
 pymongo==4.10.1                # MongoDB
 boto3==1.35.36                 # DynamoDB

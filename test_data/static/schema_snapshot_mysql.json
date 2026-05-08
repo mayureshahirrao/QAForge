@@ -1,0 +1,158 @@
+{
+  "city": [
+    {
+      "column": "ID",
+      "type": "int",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "Name",
+      "type": "char",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "CountryCode",
+      "type": "char",
+      "nullable": false,
+      "fk": {
+        "table": "country",
+        "column": "Code"
+      }
+    },
+    {
+      "column": "District",
+      "type": "char",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "Population",
+      "type": "int",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "country": [
+    {
+      "column": "Code",
+      "type": "char",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "Name",
+      "type": "char",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "Continent",
+      "type": "enum",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "Region",
+      "type": "char",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "SurfaceArea",
+      "type": "decimal",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "IndepYear",
+      "type": "smallint",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "Population",
+      "type": "int",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "LifeExpectancy",
+      "type": "decimal",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "GNP",
+      "type": "decimal",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "GNPOld",
+      "type": "decimal",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "LocalName",
+      "type": "char",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "GovernmentForm",
+      "type": "char",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "HeadOfState",
+      "type": "char",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "Capital",
+      "type": "int",
+      "nullable": true,
+      "fk": null
+    },
+    {
+      "column": "Code2",
+      "type": "char",
+      "nullable": false,
+      "fk": null
+    }
+  ],
+  "countrylanguage": [
+    {
+      "column": "CountryCode",
+      "type": "char",
+      "nullable": false,
+      "fk": {
+        "table": "country",
+        "column": "Code"
+      }
+    },
+    {
+      "column": "Language",
+      "type": "char",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "IsOfficial",
+      "type": "enum",
+      "nullable": false,
+      "fk": null
+    },
+    {
+      "column": "Percentage",
+      "type": "decimal",
+      "nullable": false,
+      "fk": null
+    }
+  ]
+}

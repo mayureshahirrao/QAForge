@@ -37,10 +37,19 @@ def step_dyn_exists(context, table, key_name, key_value):
 # ---------- helpers ----------
 def _split_where(where: str):
     """
-    Tiny helper: parse `col = 'val'` style into ('col = %s', ['val']) so we can
-    use the test framework's parameterised execution. Limited on purpose — for
-    complex predicates write a custom step.
+    Parse a WHERE fragment into (clause, params) for parameterised execution.
+
+    Supported forms:
+      col = 'val'          ->  ("col = %s", ["val"])
+      col IS NULL          ->  ("col IS NULL", [])
+      col IS NOT NULL      ->  ("col IS NOT NULL", [])
+      col NOT IN (...)     ->  ("col NOT IN (...)", [])   # subquery or literal list
     """
+    upper = where.upper()
+    if " IS NOT NULL" in upper or " IS NULL" in upper:
+        return where, []
+    if " NOT IN " in upper:
+        return where, []
     parts = [p.strip() for p in where.split("=", 1)]
     col = parts[0]
     val = parts[1].strip().strip("'").strip('"')
