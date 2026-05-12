@@ -1,0 +1,35 @@
+name: QAForge CI
+on:
+  push: { branches: [main, develop] }
+  pull_request: { branches: [main, develop] }
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11", cache: pip }
+      - name: Install deps
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+      - name: Run smoke
+        env:
+          QAFORGE_ENV: dev
+          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+          OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: bash scripts/run.sh smoke dev chromium 4
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qaforge-reports
+          path: |
+            reports/allure/results
+            reports/extent
+            reports/custom
+            reports/screenshots
+            reports/videos

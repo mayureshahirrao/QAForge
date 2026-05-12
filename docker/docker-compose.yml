@@ -1,0 +1,65 @@
+# docker/docker-compose.yml — Dev sandbox: Postgres + MySQL + Mongo + DynamoDB-local + the test runner.
+# Run all suites:    docker compose -f docker/docker-compose.yml up --abort-on-container-exit
+# Run single suite:  docker compose -f docker/docker-compose.yml run --rm qaforge bash scripts/run.sh smoke dev
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: appdb
+      POSTGRES_USER: qa
+      POSTGRES_PASSWORD: qa
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U qa -d appdb"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: appdb
+      MYSQL_USER: qa
+      MYSQL_PASSWORD: qa
+      MYSQL_ROOT_PASSWORD: qaroot
+    ports: ["3306:3306"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pqaroot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  mongo:
+    image: mongo:7
+    ports: ["27017:27017"]
+
+  dynamo:
+    image: amazon/dynamodb-local:latest
+    command: -jar DynamoDBLocal.jar -sharedDb
+    ports: ["8000:8000"]
+
+  qaforge:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    depends_on:
+      postgres: { condition: service_healthy }
+      mysql:    { condition: service_healthy }
+      mongo:    { condition: service_started }
+      dynamo:   { condition: service_started }
+    environment:
+      QAFORGE_ENV: dev
+      PG_USER: qa
+      PG_PASSWORD: qa
+      MYSQL_USER: qa
+      MYSQL_PASSWORD: qa
+      MONGO_URI: "mongodb://mongo:27017"
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
+      AWS_DEFAULT_REGION: us-east-1
+    volumes:
+      - ../reports:/app/reports
+      - ../logs:/app/logs
+    command: ["bash", "scripts/run.sh", "smoke", "dev", "chromium", "4"]

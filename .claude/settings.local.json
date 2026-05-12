@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(pip install *)",
+      "PowerShell(pip *)",
+      "Bash(Get-ChildItem -Recurse \"D:\\\\Programming\\\\PythonProgramming\\\\QAForge\" -Name)",
+      "Bash(Select-Object -First 50)",
+      "PowerShell(.venv\\\\Scripts\\\\behave.exe features/database/postgres/postgresql_dvdrental_actorfilm.feature --no-capture --no-capture-stderr 2>&1)",
+      "PowerShell(.venv\\\\Scripts\\\\python.exe -m trace --trace --ignore-dir=\".venv;$env:LOCALAPPDATA\\\\Programs\\\\Python\" .venv\\\\Lib\\\\site-packages\\\\behave\\\\__main__.py features/database/postgres/postgresql_dvdrental_actorfilm.feature --no-capture --no-capture-stderr 2>&1 | Select-String \"QAForge\" | Select-Object -ExpandProperty Line)",
+      "PowerShell(.venv\\\\Scripts\\\\pip.exe install coverage --quiet 2>&1)",
+      "PowerShell(.venv\\\\Scripts\\\\coverage.exe run --source=features,src --branch -m behave features/database/postgres/postgresql_dvdrental_actorfilm.feature --no-capture --no-capture-stderr 2>&1)",
+      "PowerShell(.venv\\\\Scripts\\\\coverage.exe report -m --include=\"features/steps/db_steps.py,features/environment.py,src/qaforge/database/postgres/client.py\" 2>&1)",
+      "PowerShell(.venv\\\\Scripts\\\\coverage.exe annotate --include=\"features/steps/db_steps.py,features/environment.py,src/qaforge/database/postgres/client.py\" 2>&1)",
+      "PowerShell(.venv\\\\Scripts\\\\python.exe trace_run.py 2>$null; Get-Content trace_output.txt)",
+      "Bash(Get-Content \"C:\\\\Users\\\\Mayuresh\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--Programming-PythonProgramming-QAForge\\\\b5938b54-f7ce-4f92-bb7f-0761639c229a\\\\tasks\\\\bbpgb8el0.output\" -Wait)",
+      "Bash(Select-String \"done|error|passed|failed|Exception\" --line-buffered)",
+      "PowerShell(.venv\\\\Scripts\\\\python.exe -c \"import psycopg2; print\\('psycopg2 ok'\\)\" 2>&1; .venv\\\\Scripts\\\\python.exe -c \"import psycopg; print\\('psycopg ok'\\)\" 2>&1)",
+      "PowerShell(.venv\\\\Scripts\\\\python.exe -c \"import importlib.util, sys; spec = importlib.util.spec_from_file_location\\('actorfilm_steps', 'features/steps/database/postgres/actorfilm_steps.py'\\); mod = importlib.util.module_from_spec\\(spec\\); spec.loader.exec_module\\(mod\\); print\\('import ok'\\)\" 2>&1)",
+      "PowerShell(.venv\\\\Scripts\\\\behave.exe features/api/rest/ --dry-run --no-capture 2>&1)",
+      "PowerShell(.venv\\\\Scripts\\\\behave.exe features/api/rest/ --no-capture --tags=\"~@no_prod\" 2>&1)",
+      "PowerShell(Out-File *)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(.venv\\\\Scripts\\\\behave.exe features/api/rest/pet_management.feature features/api/rest/pet_files_upload.feature features/api/rest/pet_store_orders.feature features/api/rest/user_management.feature features/api/rest/contract_validation.feature --no-capture 2>&1 | Select-String -Pattern \"Assertion|AttributeError|ConnectError|passed|failed|skipped|undefined\" | Where-Object { $_ -notmatch \"ContextMask|WARNING\" })",
+      "PowerShell(.venv\\\\Scripts\\\\behave.exe features/api/rest/pet_management.feature features/api/rest/pet_files_upload.feature features/api/rest/pet_store_orders.feature features/api/rest/user_management.feature features/api/rest/contract_validation.feature --no-capture 2>&1 | Select-String -Pattern \"Scenario:|Assertion|AttributeError|ConnectError|passed|failed|skipped|undefined\" | Where-Object { $_ -notmatch \"ContextMask|WARNING\" })",
+      "PowerShell(.venv\\\\Scripts\\\\behave.exe features/api/rest/pet_management.feature --no-capture 2>&1 | Select-String -Pattern \"Scenario:|Assertion|AttributeError|Error|passed|failed|skipped|undefined\" | Where-Object { $_ -notmatch \"ContextMask|WARNING|NativeCommand\" })",
+      "PowerShell(.venv\\\\Scripts\\\\behave.exe features/api/rest/pet_management.feature --no-capture 2>&1 | Select-String -Pattern \"Scenario:|Assertion|Error|passed|failed|skipped|undefined\" | Where-Object { $_ -notmatch \"ContextMask|WARNING|NativeCommand\" })"
+    ]
+  }
+}

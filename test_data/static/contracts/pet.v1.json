@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pet.v1",
+  "type": "object",
+  "required": ["name", "photoUrls"],
+  "properties": {
+    "id":        { "type": "integer" },
+    "name":      { "type": "string" },
+    "photoUrls": { "type": "array", "items": { "type": "string" } },
+    "status":    { "type": "string", "enum": ["available", "pending", "sold"] },
+    "category": {
+      "type": "object",
+      "properties": {
+        "id":   { "type": "integer" },
+        "name": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id":   { "type": "integer" },
+          "name": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
