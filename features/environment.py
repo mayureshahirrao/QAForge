@@ -88,7 +88,7 @@ def before_scenario(context, scenario):
     context.cleanup = CleanupRegistry()
     context._scenario_start = time.time()
     context._steps_recorded: list[StepReport] = []
-    context._retry_attempt = getattr(context, "_retry_attempt", 0)
+    context._retry_attempt = context.__dict__.get("_retry_attempt", 0)
 
     # ---- UI ----
     if "ui" in scenario.effective_tags or scenario.feature.name.lower().startswith("ui"):
@@ -183,9 +183,10 @@ def after_scenario(context, scenario):
     context.cleanup.run_all()
 
     # Retry failed scenarios once
-    if scenario.status.name == "failed" and context._retry_attempt < context.retry_failed:
-        log.warning(f"Retrying scenario '{scenario.name}' (attempt {context._retry_attempt + 1})")
-        context._retry_attempt += 1
+    retry_attempt = context.__dict__.get("_retry_attempt", 0)
+    if scenario.status.name == "failed" and retry_attempt < context.retry_failed:
+        log.warning(f"Retrying scenario '{scenario.name}' (attempt {retry_attempt + 1})")
+        context._retry_attempt = retry_attempt + 1
         scenario.reset()
         scenario.run(context._runner)  # re-run; Behave 1.2.6 supports manual rerun pattern
 

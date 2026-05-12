@@ -44,13 +44,13 @@ databases:
   postgres:
     host: "localhost"
     port: 5432
-    db:   "PG_DB"
+    db:   "dvdrental"
     user_env: "PG_USER"
     password_env: "PG_PASSWORD"
   mysql:
     host: "localhost"
     port: 3306
-    db:   "MYSQL_DB"
+    db:   "world"
     user_env: "MYSQL_USER"
     password_env: "MYSQL_PASSWORD"
   mongo:

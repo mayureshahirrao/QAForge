@@ -93,4 +93,4 @@ class PostgresClient:
             self._conn = None
 
 if __name__ == "__main__":
-    connect()
+    PostgresClient().connect()
