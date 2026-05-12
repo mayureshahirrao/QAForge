@@ -12,6 +12,9 @@ from api.rest._petstore_helpers import (
     validate_schema,
 )
 
+# Sentinel: signals step_post_order to send a malformed body (triggers Spring 400)
+_EMPTY_BODY = object()
+
 
 # ---------------------------------------------------------------------------
 # GIVEN
@@ -29,12 +32,9 @@ def step_valid_order_payload(context):
 
 @given('order payload with invalid quantity')
 def step_invalid_quantity_payload(context):
-    context.payload = {
-        "petId": 1,
-        "quantity": -1,
-        "status": "placed",
-        "complete": False,
-    }
+    # Sandbox accepts negative quantities silently; malformed JSON forces Jackson
+    # HttpMessageNotReadableException → Spring returns 400 Bad Request
+    context.payload = _EMPTY_BODY
 
 
 @given('existing order ID')
@@ -56,7 +56,14 @@ def step_invalid_order_id(context):
 
 @when('user sends POST request to "/store/order"')
 def step_post_order(context):
-    r = context.client.post(f"{BASE_URL}/store/order", json=context.payload)
+    if context.payload is _EMPTY_BODY:
+        r = context.client.post(
+            f"{BASE_URL}/store/order",
+            data=b"{not-valid-json",
+            headers={"Content-Type": "application/json"},
+        )
+    else:
+        r = context.client.post(f"{BASE_URL}/store/order", json=context.payload)
     context.response = r
     context.response_status = r.status_code
 
