@@ -24,7 +24,12 @@
       "PowerShell(.venv\\\\Scripts\\\\behave.exe features/api/rest/pet_management.feature features/api/rest/pet_files_upload.feature features/api/rest/pet_store_orders.feature features/api/rest/user_management.feature features/api/rest/contract_validation.feature --no-capture 2>&1 | Select-String -Pattern \"Scenario:|Assertion|AttributeError|ConnectError|passed|failed|skipped|undefined\" | Where-Object { $_ -notmatch \"ContextMask|WARNING\" })",
       "PowerShell(.venv\\\\Scripts\\\\behave.exe features/api/rest/pet_management.feature --no-capture 2>&1 | Select-String -Pattern \"Scenario:|Assertion|AttributeError|Error|passed|failed|skipped|undefined\" | Where-Object { $_ -notmatch \"ContextMask|WARNING|NativeCommand\" })",
       "PowerShell(.venv\\\\Scripts\\\\behave.exe features/api/rest/pet_management.feature --no-capture 2>&1 | Select-String -Pattern \"Scenario:|Assertion|Error|passed|failed|skipped|undefined\" | Where-Object { $_ -notmatch \"ContextMask|WARNING|NativeCommand\" })",
-      "Bash(python -m behave features/api/rest/pet_store_orders.feature --no-capture)"
+      "Bash(python -m behave features/api/rest/pet_store_orders.feature --no-capture)",
+      "Bash(python -m behave features/api/rest/pet_files_upload.feature --no-capture)",
+      "Bash(python -m behave features/api/rest/pet_files_upload.feature --no-capture --include \"Upload unsupported\")",
+      "Bash(python -m behave features/api/rest/pet_files_upload.feature --no-capture --tags=negative)",
+      "Bash(python -m behave features/api/rest/user_management.feature --no-capture)",
+      "Bash(python -m behave features/api/rest/users.feature --no-capture)"
     ]
   }
 }

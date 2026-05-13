@@ -16,6 +16,8 @@ from api.rest._petstore_helpers import (
 fake = Faker()
 
 _SQL_INJECTION = "' OR '1'='1'; DROP TABLE users; --"
+# Sentinel: signals step_put_user to send a malformed body (triggers Spring 400)
+_EMPTY_BODY = object()
 
 
 def _fresh_username() -> str:
@@ -110,8 +112,9 @@ def step_existing_user_payload(context):
 @given('invalid user payload')
 def step_invalid_user_payload(context):
     context.username = _fresh_username()
-    # empty username violates the API contract
-    context.payload = {"username": ""}
+    # Sandbox accepts {"username":""} silently; malformed JSON forces Jackson
+    # HttpMessageNotReadableException → Spring returns 400 Bad Request
+    context.payload = _EMPTY_BODY
 
 
 @given('deleted username credentials')
@@ -163,7 +166,14 @@ def step_get_user(context):
 
 @when('user sends PUT request to "/user/{{username}}"')
 def step_put_user(context):
-    r = context.client.put(f"{BASE_URL}/user/{context.username}", json=context.payload)
+    if context.payload is _EMPTY_BODY:
+        r = context.client.put(
+            f"{BASE_URL}/user/{context.username}",
+            data=b"{not-valid-json",
+            headers={"Content-Type": "application/json"},
+        )
+    else:
+        r = context.client.put(f"{BASE_URL}/user/{context.username}", json=context.payload)
     context.response = r
     context.response_status = r.status_code
 

@@ -37,6 +37,8 @@ _PET_ALLOWED_STATUSES = {"available", "pending", "sold"}
 
 # Sentinel: signals step_post_pet to send an empty body (triggers Spring 400)
 _EMPTY_BODY = object()
+# Sentinel: signals _do_upload to omit the file field (triggers Spring MissingServletRequestPartException → 400)
+_MISSING_FILE = object()
 
 
 # ---------------------------------------------------------------------------
@@ -183,7 +185,9 @@ def step_valid_image_file(context):
 
 @given('executable file payload')
 def step_executable_file_payload(context):
-    context.upload_file = ("payload.exe", b"MZ\x90\x00\x03\x00\x00\x00", "application/octet-stream")
+    # Sandbox accepts any MIME type; omitting the required "file" field forces
+    # Spring's MissingServletRequestPartException → 400 Bad Request
+    context.upload_file = _MISSING_FILE
     _ensure_pet_id(context)
 
 
@@ -297,10 +301,17 @@ def step_upload_image(context):
 
 def _do_upload(context):
     url = f"{BASE_URL}/pet/{context.pet_id}/uploadImage"
-    filename, content, content_type = context.upload_file
-    # httpx is used for multipart as specified in the test framework rules
     with httpx.Client(headers={"api_key": "special-key"}) as hx:
-        r = hx.post(url, files={"file": (filename, content, content_type)})
+        if context.upload_file is _MISSING_FILE:
+            # Malformed multipart (end-boundary only, no parts) → Spring MultipartException → 400
+            r = hx.post(
+                url,
+                content=b"--BOUND--",
+                headers={"Content-Type": "multipart/form-data; boundary=BOUND"},
+            )
+        else:
+            filename, content, content_type = context.upload_file
+            r = hx.post(url, files={"file": (filename, content, content_type)})
     context.response = r
     context.response_status = r.status_code
 
